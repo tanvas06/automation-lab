@@ -3,9 +3,9 @@ require(`chromedriver`)
 
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
-const {addMovie, crossOut, deleteMovie} = require('./functions/addMovies.js')
+const {addMovie, crossOut, unClick, deleteMovie} = require('../functions/addMovies')
 
-beforeEach(async () => {
+beforeAll(async () => {
     await driver.get('http://127.0.0.1:5500/movieList/index.html')
 })
 
@@ -23,7 +23,12 @@ test (`cross out movie`, async () => {
     await driver.sleep(3000)
 })
 
+test (`uncross movie`, async () => {
+    await unClick(driver)
+    await driver.sleep(3000)
+})
+
 test (`delete movie`, async () => {
     await deleteMovie(driver)
-    await driver
+    await driver.sleep(2000)
 })

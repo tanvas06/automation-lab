@@ -14,6 +14,8 @@ const addMovie = async (driver) => {
 
 const crossOut = async (driver) => {
     await driver.findElement(By.xpath('//span')).click()
+    const clicked = await driver.findElement(By.className('checked'))
+    expect(clicked).toBeTruthy
 }
 
 const unClick = async (driver) => {
@@ -21,7 +23,7 @@ const unClick = async (driver) => {
 }
 
 const deleteMovie = async (driver) => {
-    await driver.findElement(By.xpath('//button[2]')).click()
+    await driver.findElement(By.xpath('//*[contains(text(), "x")]')).click()
 }
 
 module.exports = {
